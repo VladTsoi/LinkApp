@@ -1,0 +1,35 @@
+﻿@model LinkApp.Models.Link
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    input.input-validation-error {
+        border: 1px solid red;
+    }
+
+    input.valid {
+        border: 1px solid green;
+    }
+
+    .validation-summary-errors {
+        color: red;
+    }
+</style>
+<h2>Создание записи</h2>
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form method="post">
+        <div asp-validation-summary="All"></div>
+        <p>
+            <label asp-for="Url"></label><br />
+            <input class="form-control" type="text" asp-for="Url" />
+            <span asp-validation-for="Url" />
+        </p>
+        <p>
+            <input type="submit" class="btn btn-primary" value="Создать" />
+        </p>
+    </form>
+}

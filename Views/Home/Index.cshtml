@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LinkApp.Models.Link>
+@{
+    ViewData["Title"] = "Главная страница";
+}
+
+@using (Html.BeginForm())
+{
+    <center><h2>Таблица ссылок</h2></center>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(modelItem => modelItem.Url)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => modelItem.ShortUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => modelItem.Date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(modelItem => modelItem.Transition)
+                </th>
+            </tr>
+
+        </thead>
+        <tbody>           
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Url)
+                    </td>
+                    <td>
+                        <a src="@item.ShortUrl" asp-action="TransistionToShortUrl" asp-controller="Home" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.ShortUrl)</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Transition)
+                    </td>
+                    <td>
+                        <a class="btn btn-warning" asp-action="Edit" asp-controller="Home" asp-route-id="@item.Id">Изменить</a>
+                    </td>
+                    <td>
+                        <form asp-controller="Home" asp-action="Delete" method="post" asp-route-id="@item.Id">
+                            <input type="submit" value="Удалить" class="btn btn-danger" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.5.1.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>

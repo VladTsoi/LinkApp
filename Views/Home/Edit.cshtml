@@ -1,0 +1,30 @@
+﻿@model LinkApp.Models.Link
+<style>
+    .field-validation-error {
+        color: red;
+    }
+
+    input.input-validation-error {
+        border: 1px solid red;
+    }
+
+    input.valid {
+        border: 1px solid green;
+    }
+
+    .validation-summary-errors {
+        color: red;
+    }
+</style>
+<h2>Изменение записи</h2>
+<form asp-action="edit" asp-controller="home" asp-route-id="@Model.Id">
+    <div asp-validation-summary="All"></div>
+    <p>
+        <label asp-for="Url"></label><br />
+        <input class="form-control" type="text" asp-for="Url" />
+        <span asp-validation-for="Url" />
+    </p>
+    <p>
+        <input type="submit" class="btn btn-primary" value="Сохранить" />
+    </p>
+</form>
